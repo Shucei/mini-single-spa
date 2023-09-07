@@ -1,6 +1,5 @@
 import { loadApps } from '../application/app'
 
-// 
 const originalPushState = window.history.pushState
 const originalReplaceState = window.history.replaceState
 
