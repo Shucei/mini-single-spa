@@ -7,7 +7,9 @@ export const apps: Application[] = []
 
 export async function loadApps() {
     const toUnMountApp = getAppsWithStatus(AppStatus.MOUNTED) // 获取所有已经挂载的应用
-    await Promise.all(toUnMountApp.map(unMountApp)) // 卸载所有已经挂载的应用
+    if (toUnMountApp.length) {
+        await Promise.all(toUnMountApp.map(unMountApp)) // 卸载所有已经挂载的应用
+    }
     
     const toLoadApp = getAppsWithStatus(AppStatus.BEFORE_BOOTSTRAP) // 获取所有待挂载的应用
     await Promise.all(toLoadApp.map(bootstrapApp)) // 加载所有待挂载的应用
